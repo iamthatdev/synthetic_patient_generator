@@ -26,13 +26,13 @@ Download the latest release from [Releases](https://github.com/your-org/syntheti
 
 ```bash
 # Generate 1000 patients
-synthetic-patient-gen --patients 1000 --output ./data
+synthetic-patient-gen generate --patients 1000 --output ./data
 
 # With custom configuration
-synthetic-patient-gen --patients 5000 --config ./config/custom.toml --output ./data
+synthetic-patient-gen generate --patients 5000 --config ./config/custom.toml --output ./data
 
 # Generate with evaluation set
-synthetic-patient-gen --patients 1000 --with-evals --output ./data
+synthetic-patient-gen generate --patients 1000 --with-evals --output ./data
 ```
 
 ## Output Files
@@ -55,7 +55,7 @@ See `config/default.toml` for all configuration options.
 cargo test
 
 # Run with debug output
-cargo run -- --patients 10 --output ./test-data
+cargo run -- generate --patients 10 --output ./test-data
 
 # Build release binary
 cargo build --release

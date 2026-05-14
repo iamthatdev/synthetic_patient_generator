@@ -1,0 +1,68 @@
+[job]
+batch_size = 1000
+patient_count = 100000
+eval_count = 10000
+seed = 42
+output_dir = "./data"
+formats = ["jsonl"]
+
+[actors]
+profile_workers = 4
+condition_workers = 4
+medication_workers = 4
+reaction_workers = 4
+note_workers = 4
+chunk_workers = 2
+eval_workers = 4
+writer_buffer_size = 5000
+
+[demographics]
+min_age = 18
+max_age = 90
+female_probability = 0.52
+
+[conditions]
+diabetes = 0.12
+hypertension = 0.28
+asthma = 0.09
+chronic_kidney_disease = 0.04
+coronary_artery_disease = 0.06
+copd = 0.05
+obesity = 0.22
+
+[medications]
+drug_x_exposure = 0.05
+drug_y_exposure = 0.08
+drug_z_exposure = 0.03
+aspirin_exposure = 0.18
+metformin_exposure_if_diabetes = 0.70
+
+[reactions.drug_x]
+reaction_probability = 0.20
+severe_probability = 0.15
+reaction_types = ["rash", "hives", "shortness of breath"]
+
+[reactions.drug_y]
+reaction_probability = 0.08
+severe_probability = 0.05
+reaction_types = ["nausea", "dizziness", "rash"]
+
+[evals]
+easy_probability = 0.40
+medium_probability = 0.40
+hard_probability = 0.20
+include_negative_controls = true
+include_aggregation_queries = true
+include_multihop_queries = true
+
+[observability]
+log_level = "info"
+prometheus_enabled = false
+prometheus_port = 9090
+progress_bar = true
+
+[fault_tolerance]
+max_retries_per_batch = 3
+retry_backoff_ms = 500
+dead_letter_path = "./data/dead_letters.jsonl"
+fail_fast = false

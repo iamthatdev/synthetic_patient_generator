@@ -21,7 +21,7 @@ RUN apk add --no-cache ca-certificates
 WORKDIR /app
 
 # Copy binary
-COPY --from=builder /build/target/release/synthetic_patient_data /usr/local/bin/synthetic-patient-gen
+COPY --from=builder /build/target/release/synthetic-patient-gen /usr/local/bin/synthetic-patient-gen
 
 # Copy config
 COPY --from=builder /build/config ./config

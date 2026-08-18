@@ -3,6 +3,10 @@ name = "synthetic_patient_data"
 version = "0.1.0"
 edition = "2021"
 
+[[bin]]
+name = "synthetic-patient-gen"
+path = "src/main.rs"
+
 [dependencies]
 ractor = { version = "0.15", features = ["async-trait"] }
 tokio = { version = "1", features = ["full"] }

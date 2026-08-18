@@ -97,6 +97,8 @@ impl Actor for OrchestratorActor {
                 downstream: chunking_actor,
                 config: guardrail_config,
                 conditions_config: config.conditions.clone(),
+                job_id: job_id.clone(),
+                output_dir: config.output_dir.clone(),
             },
         )
         .await?;
@@ -214,8 +216,9 @@ impl Actor for OrchestratorActor {
 
                 if completed == state.total_batches && !state.eval_launched {
                     state.eval_launched = true;
+                    // Shutdown cascades down the pipeline (profile -> ... -> writer), which
+                    // lets each stage flush before the writer closes its files.
                     state.profile_actor.cast(PipelineMsg::Shutdown).ok();
-                    state.writer_actor.cast(PipelineMsg::Shutdown).ok();
 
                     tokio::time::sleep(std::time::Duration::from_millis(100)).await;
 
@@ -320,6 +323,7 @@ impl OrchestratorActor {
                 "chunks.jsonl",
                 "evals.jsonl",
                 "ragas_dataset.jsonl",
+                "guardrail_report.json",
             ]
         });
 

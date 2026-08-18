@@ -2,7 +2,7 @@ use clap::{Parser, Subcommand};
 use std::path::PathBuf;
 
 #[derive(Parser)]
-#[command(name = "synthetic_patient_data")]
+#[command(name = "synthetic-patient-gen")]
 #[command(about = "Ractor-powered synthetic healthcare data & eval set generator")]
 pub struct Cli {
     #[command(subcommand)]

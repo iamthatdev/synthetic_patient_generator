@@ -221,6 +221,7 @@ impl Actor for EvalQueryActor {
                             &state.eval_context,
                             eval_index,
                             &state.eval_config,
+                            crate::domain::eval::EvalMetadata { seed, batch_id },
                         )
                     })
                     .collect();

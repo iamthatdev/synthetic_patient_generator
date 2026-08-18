@@ -77,6 +77,4 @@ cargo build --release
 
 MIT
 
-## Related Projects
 
-- [healthcare-rag-showcase](https://github.com/your-org/healthcare-rag-showcase) - RAG application using this generator
